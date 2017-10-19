@@ -80,24 +80,29 @@ public class Matriz {
      * @return O produto das matrizes
      */
     public Matriz prod(Matriz m) throws MatrizInvalidaException{
-        Matriz prod = new Matriz(mat.length, m.mat[0].length);
-        
-        for(int i=0 ; i<mat.length ; i++){
-            for(int j=0 ; j < m.mat[0].length ; j++){
-                prod.mat[i][j]=0;
-            }
+        if(this.getMatriz()[0].length != m.getMatriz().length){
+            throw new ProdMatrizesIncompativeisException(this, m);
         }
-        
-        for(int i=0 ; i<mat.length ; i++){
-            for(int j=0 ; j < m.mat[0].length ; j++){
-                for(int x=0 ; x< mat[0].length ; x++){
-                    prod.mat[i][j] += mat[i][x] * m.mat[x][j];
+        else{
+            Matriz prod = new Matriz(mat.length, m.mat[0].length);
+
+            for(int i=0 ; i<mat.length ; i++){
+                for(int j=0 ; j < m.mat[0].length ; j++){
+                    prod.mat[i][j]=0;
                 }
-                
             }
+
+            for(int i=0 ; i<mat.length ; i++){
+                for(int j=0 ; j < m.mat[0].length ; j++){
+                    for(int x=0 ; x< mat[0].length ; x++){
+                        prod.mat[i][j] += mat[i][x] * m.mat[x][j];
+                    }
+
+                }
+            }
+
+            return prod;
         }
-        
-        return prod;
     }
 
     /**
