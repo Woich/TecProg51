@@ -1,4 +1,4 @@
-package utfpr.ct.dainf.if62c.pratica.fp2pratica3;
+package utfpr.ct.dainf.if62c.pratica;
 
 import utfpr.ct.dainf.if62c.pratica.MatrizInvalidaException;
 
@@ -38,7 +38,7 @@ public class Matriz {
      * Retorna a matriz transposta.
      * @return A matriz transposta.
      */
-    public Matriz getTransposta() {
+    public Matriz getTransposta() throws MatrizInvalidaException{
         Matriz t = new Matriz(mat[0].length, mat.length);
         for (int i = 0; i < mat.length; i++) {
             for (int j = 0; j < mat[i].length; j++) {
@@ -53,7 +53,7 @@ public class Matriz {
      * @param m A matriz a ser somada
      * @return A soma das matrizes
      */
-    public Matriz soma(Matriz m) {
+    public Matriz soma(Matriz m) throws MatrizInvalidaException{
         Matriz soma = new Matriz(mat.length, mat[0].length);
         double[][] som = soma.getMatriz();
         double[][] matr = m.getMatriz();
@@ -72,7 +72,7 @@ public class Matriz {
      * @param m A matriz a ser multiplicada
      * @return O produto das matrizes
      */
-    public Matriz prod(Matriz m) {
+    public Matriz prod(Matriz m) throws MatrizInvalidaException{
         Matriz prod = new Matriz(mat.length, m.mat[0].length);
         
         for(int i=0 ; i<mat.length ; i++){
