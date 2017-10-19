@@ -53,18 +53,25 @@ public class Matriz {
      * @param m A matriz a ser somada
      * @return A soma das matrizes
      */
-    public Matriz soma(Matriz m) throws MatrizInvalidaException{
-        Matriz soma = new Matriz(mat.length, mat[0].length);
-        double[][] som = soma.getMatriz();
-        double[][] matr = m.getMatriz();
-        for(int i=0 ; i<mat.length ; i++){
-            for(int j=0 ; j<mat[0].length ; j++){
-                som[i][j] = mat[i][j] + matr[i][j];
-                
-            }
-        }
+    public Matriz soma(Matriz m) throws MatrizInvalidaException, SomaMatrizesIncompativeisException{
         
-        return soma;
+        if(m.getMatriz().length != this.getMatriz().length || m.getMatriz()[0].length != this.getMatriz()[0].length){
+            throw new SomaMatrizesIncompativeisException(this, m);
+        }
+        else{
+            
+            Matriz soma = new Matriz(mat.length, mat[0].length);
+            double[][] som = soma.getMatriz();
+            double[][] matr = m.getMatriz();
+            for(int i=0 ; i<mat.length ; i++){
+                for(int j=0 ; j<mat[0].length ; j++){
+                    som[i][j] = mat[i][j] + matr[i][j];
+
+                }
+            }
+
+            return soma;
+        }
     }
 
     /**
