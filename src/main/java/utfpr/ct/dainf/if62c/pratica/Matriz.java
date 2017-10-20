@@ -18,12 +18,11 @@ public class Matriz {
      */
     public Matriz(int m, int n) throws MatrizInvalidaException{
         
-        if(m == 0 || n== 0){
+        if(m <= 0 || n <= 0){
             throw new MatrizInvalidaException(m,n);
         }
-        else{
-            mat = new double[m][n];
-        }
+        
+        mat = new double[m][n];
     }
     
     /**
@@ -58,20 +57,19 @@ public class Matriz {
         if(m.getMatriz().length != this.getMatriz().length || m.getMatriz()[0].length != this.getMatriz()[0].length){
             throw new SomaMatrizesIncompativeisException(this, m);
         }
-        else{
+
             
-            Matriz soma = new Matriz(mat.length, mat[0].length);
-            double[][] som = soma.getMatriz();
-            double[][] matr = m.getMatriz();
-            for(int i=0 ; i<mat.length ; i++){
-                for(int j=0 ; j<mat[0].length ; j++){
+        Matriz soma = new Matriz(mat.length, mat[0].length);
+        double[][] som = soma.getMatriz();
+        double[][] matr = m.getMatriz();
+        for(int i=0 ; i<mat.length ; i++){
+            for(int j=0 ; j<mat[0].length ; j++){
                     som[i][j] = mat[i][j] + matr[i][j];
 
-                }
             }
+        }
 
             return soma;
-        }
     }
 
     /**
@@ -83,26 +81,25 @@ public class Matriz {
         if(this.getMatriz()[0].length != m.getMatriz().length){
             throw new ProdMatrizesIncompativeisException(this, m);
         }
-        else{
-            Matriz prod = new Matriz(mat.length, m.mat[0].length);
+        
+        Matriz prod = new Matriz(mat.length, m.mat[0].length);
 
-            for(int i=0 ; i<mat.length ; i++){
-                for(int j=0 ; j < m.mat[0].length ; j++){
+        for(int i=0 ; i<mat.length ; i++){
+            for(int j=0 ; j < m.mat[0].length ; j++){
                     prod.mat[i][j]=0;
-                }
             }
+        }
 
-            for(int i=0 ; i<mat.length ; i++){
-                for(int j=0 ; j < m.mat[0].length ; j++){
-                    for(int x=0 ; x< mat[0].length ; x++){
+        for(int i=0 ; i<mat.length ; i++){
+            for(int j=0 ; j < m.mat[0].length ; j++){
+                for(int x=0 ; x< mat[0].length ; x++){
                         prod.mat[i][j] += mat[i][x] * m.mat[x][j];
-                    }
-
                 }
+
             }
+        }
 
             return prod;
-        }
     }
 
     /**
