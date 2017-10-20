@@ -79,7 +79,7 @@ public class Matriz {
      * @param m A matriz a ser multiplicada
      * @return O produto das matrizes
      */
-    public Matriz prod(Matriz m) throws MatrizInvalidaException{
+    public Matriz prod(Matriz m) throws MatrizInvalidaException, ProdMatrizesIncompativeisException{
         if(this.getMatriz()[0].length != m.getMatriz().length){
             throw new ProdMatrizesIncompativeisException(this, m);
         }
